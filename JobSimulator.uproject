@@ -22,6 +22,14 @@
 		{
 			"Name": "TextToSpeech",
 			"Enabled": true
+		},
+		{
+			"Name": "HttpBlueprint",
+			"Enabled": true
+		},
+		{
+			"Name": "RemoteControl",
+			"Enabled": true
 		}
 	]
 }
