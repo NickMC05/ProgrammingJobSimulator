@@ -1,0 +1,16 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.SpeechRecognition.cpp.obj": [
+			"SpeechRecognition.gen.cpp.obj",
+			"SpeechRecognition.init.gen.cpp.obj",
+			"SpeechRecognitionGameStateBase.gen.cpp.obj",
+			"SpeechRecognitionSubsystem.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"SpeechRecognition.cpp.obj",
+			"SpeechRecognitionGameStateBase.cpp.obj",
+			"SpeechRecognitionSubsystem.cpp.obj",
+			"SpeechRecognitionWorker.cpp.obj"
+		]
+	}
+}

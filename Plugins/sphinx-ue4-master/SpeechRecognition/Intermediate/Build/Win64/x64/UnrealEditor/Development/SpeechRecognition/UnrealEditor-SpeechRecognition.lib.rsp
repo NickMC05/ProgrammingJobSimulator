@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-SpeechRecognition.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:/Users/FTV/Documents/Unreal Projects/JobSimulator/Intermediate/Build/Win64/x64/JobSimulatorEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.obj"
+"C:/Users/FTV/Documents/Unreal Projects/JobSimulator/Plugins/sphinx-ue4-master/SpeechRecognition/Intermediate/Build/Win64/x64/UnrealEditor/Development/SpeechRecognition/Module.SpeechRecognition.cpp.obj"
+"C:/Users/FTV/Documents/Unreal Projects/JobSimulator/Plugins/sphinx-ue4-master/SpeechRecognition/Intermediate/Build/Win64/x64/UnrealEditor/Development/SpeechRecognition/Default.rc2.res"
+/OUT:"C:/Users/FTV/Documents/Unreal Projects/JobSimulator/Plugins/sphinx-ue4-master/SpeechRecognition/Intermediate/Build/Win64/x64/UnrealEditor/Development/SpeechRecognition/UnrealEditor-SpeechRecognition.lib"
