@@ -1,30 +1,30 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// SpeechToText.h
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Kismet/KismetSystemLibrary.h"
 #include "SpeechToText.generated.h"
+
+// A Blueprint‐assignable delegate that carries the final string
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
+    FOnSpeechToTextComplete,
+    const FString&, TranscribedText
+);
 
 UCLASS()
 class JOBSIMULATORV2_API ASpeechToText : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
-	ASpeechToText();
+    ASpeechToText();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Starts the async process; returns immediately
+    UFUNCTION(BlueprintCallable, Category = "Speech")
+    void StartAnalyzeAudio();
 
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	UFUNCTION(BlueprintCallable) // To be called in blueprint
-		static void AnalyzeAudio(UObject* Context);
-
+    // Fired on the game thread when the process finishes
+    UPROPERTY(BlueprintAssignable, Category = "Speech")
+    FOnSpeechToTextComplete OnSpeechToTextComplete;
 };

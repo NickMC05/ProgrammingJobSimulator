@@ -2,7 +2,9 @@ import subprocess
 
 # Run the command and wait for completion
 result = subprocess.run(
-    ["./build/bin/Release/whisper-cli", "-otxt", "./samples/jfk.mp3"],
+    ["./build/bin/Release/whisper-cli",
+     "-otxt",
+     "../TempData/AudioCapture.wav"],
     capture_output=True,
     text=True
 )
