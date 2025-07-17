@@ -42,6 +42,18 @@
 		{
 			"Name": "RemoteControl",
 			"Enabled": true
+		},
+		{
+			"Name": "MetaHumanCoreTech",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64",
+				"Linux"
+			]
+		},
+		{
+			"Name": "MetaHumanCharacter",
+			"Enabled": true
 		}
 	]
 }
