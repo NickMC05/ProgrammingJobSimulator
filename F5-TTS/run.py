@@ -1,6 +1,7 @@
 import subprocess
 import sys
 from pathlib import Path
+from playsound import playsound
 
 def main():
     # 1) Get the text passed from Unreal (command line argument)
@@ -12,8 +13,8 @@ def main():
     # 2) Locate the directory of this script:
     script_dir = Path(__file__).resolve().parent
 
-    # 3) Walk up until you find the F5-TTS-main folder
-    def find_tts_root(start: Path, marker: str = "F5-TTS-main") -> Path:
+    # 3) Walk up until you find the F5-TTS folder (not F5-TTS-main)
+    def find_tts_root(start: Path, marker: str = "F5-TTS") -> Path:
         for p in (start, *start.parents):
             candidate = p / marker
             if candidate.is_dir():
@@ -25,6 +26,7 @@ def main():
     # 4) Build the relative path to the .wav
     ref_audio = (
         tts_root
+        / "F5-TTS-main"  # Add this part here
         / "audio-references"
         / "basic_ref_en.wav"
     )
@@ -34,7 +36,7 @@ def main():
         "f5-tts_infer-cli",
         "--model",    "F5TTS_v1_Base",
         "--ref_audio", str(ref_audio),
-        "--gen_text",  user_text  # Using the text from Unreal
+        "--gen_text",  user_text
     ]
 
     # 6) Run it
@@ -46,6 +48,21 @@ def main():
             capture_output=True,
         )
         print("Command Output:", result.stdout)
+
+        # Get the generated audio file path
+        # The correct path is in F5-TTS/tests/ not F5-TTS/F5-TTS-main/tests/
+        generated_audio = tts_root / "tests" / "infer_cli_basic.wav"
+        
+        # Verify the file exists
+        if not generated_audio.exists():
+            print(f"Error: Generated audio file not found at {generated_audio}")
+            sys.exit(1)
+            
+        print(f"Playing generated audio from: {generated_audio}")
+        
+        # 7) Play the generated audio
+        playsound(str(generated_audio))
+
     except subprocess.CalledProcessError as e:
         print("ERROR:", e.stderr)
         sys.exit(1)
