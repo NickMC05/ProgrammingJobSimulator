@@ -54,6 +54,11 @@
 		{
 			"Name": "MetaHumanCharacter",
 			"Enabled": true
+		},
+		{
+			"Name": "NV_ACE_Reference",
+			"Enabled": true,
+			"MarketplaceURL": "https://www.unrealengine.com/marketplace/en-US/product/ace-unreal-engine-plugin"
 		}
 	]
 }
