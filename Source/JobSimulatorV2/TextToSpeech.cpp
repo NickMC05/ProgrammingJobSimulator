@@ -7,10 +7,16 @@
 ATextToSpeech::ATextToSpeech()
 {
     PrimaryActorTick.bCanEverTick = true;
+
+    // Initialize the processing state
+    bProcessing = false;
 }
 
 void ATextToSpeech::AnalyzeText(UObject* Context, UPARAM(ref) FString& Text)
 {
+    // Set bProcessing to true at the start
+    bProcessing = true;
+
     // 1) Get script path
     const FString ProjectRoot = FPaths::ProjectDir();
     const FString ScriptDir = FPaths::Combine(ProjectRoot, TEXT("F5-TTS"));
@@ -21,7 +27,7 @@ void ATextToSpeech::AnalyzeText(UObject* Context, UPARAM(ref) FString& Text)
     FString FullCommand = FString::Printf(TEXT("\"%s\" \"%s\""), *ScriptPath, *EscapedText);
 
     // Run asynchronously to avoid freezing
-    Async(EAsyncExecution::Thread, [Context, ScriptDir, FullCommand]()
+    Async(EAsyncExecution::Thread, [this, Context, ScriptDir, FullCommand]()
         {
             // 3) Create the process without showing a console window
             FProcHandle ProcHandle = FPlatformProcess::CreateProc(
@@ -39,9 +45,10 @@ void ATextToSpeech::AnalyzeText(UObject* Context, UPARAM(ref) FString& Text)
             if (!ProcHandle.IsValid())
             {
                 // Report failure to spawn process
-                AsyncTask(ENamedThreads::GameThread, [Context]()
+                AsyncTask(ENamedThreads::GameThread, [this, Context]()
                     {
                         UKismetSystemLibrary::PrintString(Context, TEXT("Failed to launch Python process."));
+                        bProcessing = false; // Set bProcessing to false on failure
                     });
                 return;
             }
@@ -57,7 +64,7 @@ void ATextToSpeech::AnalyzeText(UObject* Context, UPARAM(ref) FString& Text)
             FPlatformProcess::CloseProc(ProcHandle);
 
             // 4) Use the Game Thread to update the UI or print messages
-            AsyncTask(ENamedThreads::GameThread, [Context, ReturnCode]()
+            AsyncTask(ENamedThreads::GameThread, [this, Context, ReturnCode]()
                 {
                     if (ReturnCode != 0)
                     {
@@ -70,6 +77,9 @@ void ATextToSpeech::AnalyzeText(UObject* Context, UPARAM(ref) FString& Text)
                     {
                         UKismetSystemLibrary::PrintString(Context, TEXT("run.py executed successfully"));
                     }
+
+                    // Set bProcessing to false after completion
+                    bProcessing = false;
                 });
         });
 }

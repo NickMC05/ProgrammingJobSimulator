@@ -14,6 +14,11 @@ class JOBSIMULATORV2_API ATextToSpeech : public AActor
 public:
     ATextToSpeech();
 
+    // Function to analyze text
     UFUNCTION(BlueprintCallable, Category = "TTS")
     void AnalyzeText(UObject* Context, UPARAM(ref)FString& Text);
+
+    // Boolean property to indicate processing state
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "TTS")
+    bool bProcessing;
 };
