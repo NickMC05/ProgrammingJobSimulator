@@ -38,6 +38,9 @@ def main():
         "--ref_audio", str(ref_audio),
         "--gen_text",  user_text
     ]
+    print("command:")
+    print(command)
+    print()
 
     # 6) Run it
     try:
