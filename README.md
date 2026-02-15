@@ -45,10 +45,6 @@ Players solve real coding challenges delivered as narrative emails from AI-drive
 
 ## 🚀 Quick Start *(Coming Soon)*  
 
-> ✨ **X** One-click installer (Windows/Linux) for LLM + Whisper + Audio2Face setup  
-> ✨ **X** Docker Compose config with GPU passthrough  
-> ✨ **X** Pre-built binaries with embedded quantized LLMs (GGUF format)
-
 ### Requirements  
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
