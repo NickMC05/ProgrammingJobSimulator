@@ -1,4 +1,4 @@
-<img width="3508" height="4967" alt="NVIDIA Poster (1)" src="https://github.com/user-attachments/assets/0f478a7c-049d-4863-b771-5abe3268d0d3" />
+<img width="3508" height="4967" alt="Poster" src="https://github.com/user-attachments/assets/648383fc-25b0-4c9d-9952-619c46e34503" />
 
 [![Unreal Engine 5](https://img.shields.io/badge/Unreal_Engine_5-313131?logo=unrealengine&logoColor=white)](https://www.unrealengine.com)
 [![NVIDIA](https://img.shields.io/badge/NVIDIA-76B900?logo=nvidia&logoColor=white)](https://developer.nvidia.com)
